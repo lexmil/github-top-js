@@ -3,15 +3,13 @@ import moment from 'moment';
 export const FETCH_JSON_DATA = 'FETCH_JSON_DATA';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const FETCH_FAIL = 'FETCH_FAILED';
-export const SET_PAGE = 'SET_PAGE';
 
 const initialState = {
   isFetch: false,
-  data: {},
-  page: 1
+  data: {}
 };
 
-function reducer (state = initialState, action = {}) {
+export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
     case FETCH_JSON_DATA:
       return {
@@ -29,18 +27,10 @@ function reducer (state = initialState, action = {}) {
         ...state,
         isFetch: false
       };
-    case SET_PAGE: {
-      return {
-        ...state,
-        page: action.payload
-      }
-    }
     default:
       return state;
   }
 }
-
-export default reducer;
 
 function fetchJsonData() {
   return {
@@ -67,15 +57,11 @@ export function fetchRepos() {
 
   return (dispatch) => {
     dispatch(fetchJsonData());
-    return fetch(URL, { method: 'GET'})
-      .then(response => Promise.all([response, response.json()]))
-      .then(([response, json]) => {
-        if (response.status === 200) {
-          dispatch(fetchReposSuccess(json))
-        }
-        else {
-          dispatch(fetchReposFail())
-        }
+    fetch(URL, { method: 'GET'})
+      .then(response => response.json())
+      .then(data => {
+        dispatch(fetchReposSuccess(data))
       })
+      .catch(() => dispatch(fetchReposFail()));
   }
 }

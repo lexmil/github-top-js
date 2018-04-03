@@ -39,9 +39,9 @@ class App extends Component {
                 <NavigationRefresh />
               </IconButton>}
           />
-          {
-            isFetch && <LinearProgress mode="indeterminate" color="grey"/>
-          }
+
+          { isFetch && <LinearProgress mode="indeterminate" color="grey"/> }
+
           <Table selectable={false}>
             <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
               <TableRow>
