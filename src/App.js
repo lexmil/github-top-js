@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { fetchRepos } from './redux/repos';
@@ -74,6 +75,12 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  data: PropTypes.object.isRequired,
+  isFetch: PropTypes.bool.isRequired,
+  fetchRepos: PropTypes.func
+};
 
 const mapStateToProps = (state) => state;
 

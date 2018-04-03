@@ -1,14 +1,5 @@
 import React from 'react';
-
-const highlightRepositoryName = (name) => {
-  const partsOfName = name.split('/');
-  return (
-    <span>
-      <span className={'repository-owner'}>{ partsOfName[0] }</span>/
-      <span>{ partsOfName[1] }</span>
-    </span>
-  )
-};
+import PropTypes from 'prop-types';
 
 const Link = (props) => (
   <div className="repository">
@@ -20,5 +11,13 @@ const Link = (props) => (
     </div>
   </div>
 );
+
+Link.propTypes = {
+  avatar: PropTypes.string,
+  ownerUrl: PropTypes.string.isRequired,
+  ownerName: PropTypes.string.isRequired,
+  repoUrl: PropTypes.string.isRequired,
+  repoName: PropTypes.string.isRequired
+};
 
 export default Link;

@@ -1,5 +1,5 @@
 import Link from './Link'
-import Stars from './Stars'
+import Stars from './Star'
 
 export {
   Link,
